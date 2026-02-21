@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <title>Portfolio | Internship</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'Kanit', sans-serif; }
+  body { overflow-x: hidden; }
+
+/* ===== Scroll Reveal Animation (General) ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(60px) scale(0.95);
+  transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.delay-1 { transition-delay: 0.15s; }
+.delay-2 { transition-delay: 0.35s; }
+
+/* ===== SKILLS CARD SPECIFIC ANIMATION (The "Pop" Effect) ===== */
+.skill-card {
+  opacity: 0;
+  transform: translateY(40px);
+  /* Cubic-bezier นี้จะทำให้เด้งนุ่มๆ เหมือนงานระดับ Corporate */
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); 
+}
+
+.skill-card.pop-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Contact Section Reveal ===== */
+.contact-reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.contact-reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+  
+</style>
+</head>
+
+<body class="bg-[#4682A9] text-[#4682A9] antialiased selection:bg-[#FFFBDE] selection:text-[#4682A9]">
+
+<nav class="fixed top-0 w-full z-50 bg-[#FFFBDE]/95 backdrop-blur border-b border-[#4682A9]/10 shadow-sm transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      
+      <div class="flex-shrink-0 flex items-center">
+        <h1 class="text-xl sm:text-2xl font-bold text-[#4682A9] tracking-tight">My Portfolio</h1>
+      </div>
+
+      <div class="hidden md:block">
+        <ul class="flex space-x-8 text-sm font-bold">
+          <li><a href="#home" class="text-[#4682A9] hover:text-[#749BC2] transition-colors">HOME</a></li>
+          <li><a href="#about" class="text-[#4682A9] hover:text-[#749BC2] transition-colors">ABOUT ME</a></li>
+          <li><a href="#skills" class="text-[#4682A9] hover:text-[#749BC2] transition-colors">SKILLS</a></li>
+          <li><a href="#projects" class="text-[#4682A9] hover:text-[#749BC2] transition-colors">PROJECTS</a></li>
+          <li><a href="#gpa" class="text-[#4682A9] hover:text-[#749BC2] transition-colors">GPA</a></li>
+          <li><a href="#contact" class="text-[#4682A9] hover:text-[#749BC2] transition-colors">CONTACT</a></li>
+        </ul>
+      </div>
+
+      <div class="md:hidden flex items-center">
+        <button id="mobile-menu-btn" class="text-[#4682A9] hover:text-[#749BC2] focus:outline-none p-2">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden bg-[#FFFBDE] border-t border-[#4682A9]/10">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center shadow-lg">
+      <a href="#home" class="mobile-link block px-3 py-2 rounded-md text-base font-bold text-[#4682A9] hover:bg-[#91C8E4]/20">HOME</a>
+      <a href="#about" class="mobile-link block px-3 py-2 rounded-md text-base font-bold text-[#4682A9] hover:bg-[#91C8E4]/20">ABOUT ME</a>
+      <a href="#skills" class="mobile-link block px-3 py-2 rounded-md text-base font-bold text-[#4682A9] hover:bg-[#91C8E4]/20">SKILLS</a>
+      <a href="#projects" class="mobile-link block px-3 py-2 rounded-md text-base font-bold text-[#4682A9] hover:bg-[#91C8E4]/20">PROJECTS</a>
+      <a href="#gpa" class="mobile-link block px-3 py-2 rounded-md text-base font-bold text-[#4682A9] hover:bg-[#91C8E4]/20">GPA</a>
+      <a href="#contact" class="mobile-link block px-3 py-2 rounded-md text-base font-bold text-[#4682A9] hover:bg-[#91C8E4]/20">CONTACT</a>
+    </div>
+  </div>
+</nav>
+
+<div id="home" class="scroll-mt-16"></div>
+
+<section
+  class="min-h-screen md:h-screen
+         sticky md:sticky top-0 z-0
+         flex items-center justify-center
+         bg-gradient-to-b from-[#FFFBDE] via-[#FFFBDE] to-[#91C8E4]
+         overflow-hidden pt-20 md:pt-16">
+  
+  <div class="absolute -top-32 -left-32 w-60 h-60 md:w-80 md:h-80 bg-[#91C8E4]/30 rounded-full animate-pulse blur-xl"></div>
+  <div class="absolute -bottom-32 -right-32 w-72 h-72 md:w-96 md:h-96 bg-[#749BC2]/20 rounded-full animate-pulse blur-xl"></div>
+
+  <div class="relative z-10 text-center px-4 md:px-6 w-full max-w-4xl">
+    <div class="mx-auto w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-[6px] border-[#4682A9] shadow-2xl mb-6 md:mb-8 bg-[#FFFBDE]">
+      <img src="P4.jpg" onerror="this.src='https://via.placeholder.com/300x300?text=Profile+Image'" class="w-full h-full object-cover">
+    </div>
+
+    <h1 class="text-3xl sm:text-5xl md:text-6xl font-bold text-[#4682A9] mb-3 break-words">ณยา พุทธศรี</h1>
+    <p class="text-base sm:text-lg md:text-xl text-[#749BC2] font-semibold mb-6">
+      นักศึกษาวิทยาการคอมพิวเตอร์
+    </p>
+  </div>
+  
+  <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#91C8E4] to-transparent"></div>
+</section>
+
+<section id="about" class="relative z-10 bg-gradient-to-b from-[#FFFBDE] to-[#91C8E4] text-[#0B1C2D]">
+  <div class="min-h-screen flex items-center py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+
+      <div class="relative flex justify-center reveal delay-1">
+        <div class="absolute inset-0 translate-x-4 translate-y-4 border-2 border-[#4682A9]/60 rounded-2xl"></div>
+
+        <img
+          src="P1.jpg"
+          onerror="this.src='https://via.placeholder.com/600x600?text=Profile'"
+          class="relative z-10 w-full max-w-sm rounded-2xl object-cover bg-[#FFFBDE]
+                 shadow-[0_30px_60px_-15px_rgba(70,130,169,0.45)]"
+        />
+      </div>
+
+      <div class="reveal delay-2">
+        <p class="uppercase tracking-widest text-sm text-[#749BC2] mb-3">
+          Profile
+        </p>
+
+        <h3 class="text-4xl font-bold mb-6 text-[#4682A9]">
+          About Me
+        </h3>
+
+        <div class="bg-[#FFFBDE] border border-[#4682A9]/30 rounded-2xl shadow-xl p-8 space-y-6">
+          <p class="text-lg leading-relaxed text-[#0f2a44]">
+            ดิฉันเป็นนักศึกษาชั้นปีที่ 3 คณะวิทยาศาสตร์และเทคโนโลยี
+            สาขาวิชาวิทยาการคอมพิวเตอร์
+            มีความสนใจด้านการพัฒนาเว็บไซต์และการออกแบบประสบการณ์ผู้ใช้
+            (UX/UI)
+          </p>
+
+          <p class="text-base leading-relaxed text-[#0f2a44]/90">
+            มีพื้นฐานการพัฒนา Web Application
+            ด้วย <span class="font-semibold text-[#4682A9]">HTML, CSS, PHP และ Tailwind</span>
+            พร้อมเรียนรู้เทคโนโลยีใหม่
+            และสามารถทำงานร่วมกับทีมได้ดี
+          </p>
+
+          <div class="grid grid-cols-2 gap-6 pt-4 border-t border-[#4682A9]/20 text-sm">
+            <div>
+              <p class="text-[#749BC2]">Major</p>
+              <p class="font-semibold text-[#4682A9]">Computer Science</p>
+            </div>
+            <div>
+              <p class="text-[#749BC2]">Focus</p>
+              <p class="font-semibold text-[#4682A9]">Web Development</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<section id="skills" class="relative z-10 min-h-screen py-20 md:py-28 px-4 sm:px-6 bg-[#FFFBDE]">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="bg-gradient-to-r from-[#91C8E4]/70 via-[#749BC2]/70 to-[#4682A9]/70
+            border-2 border-[#FFFBDE]/40 rounded-3xl shadow-2xl p-12 md:p-16
+            backdrop-blur-xl">
+      
+      <h3 class="reveal text-5xl font-extrabold text-center text-[#FFFBDE] mb-20 tracking-widest drop-shadow-lg">
+        SKILLS
+      </h3>
+
+      <div class="mb-16 reveal delay-1">
+        <h4 class="text-2xl font-semibold text-[#0B1C2D] mb-6 text-center">Technical Skills</h4>
+        <div class="flex flex-wrap justify-center gap-4">
+          <span class="px-4 py-2 bg-[#FFFBDE] text-[#0B1C2D] rounded-full shadow-md hover:scale-105 transition-transform">HTML</span>
+          <span class="px-4 py-2 bg-[#FFFBDE] text-[#0B1C2D] rounded-full shadow-md hover:scale-105 transition-transform">CSS</span>
+          <span class="px-4 py-2 bg-[#FFFBDE] text-[#0B1C2D] rounded-full shadow-md hover:scale-105 transition-transform">UI/UX Figma</span>
+          <span class="px-4 py-2 bg-[#FFFBDE] text-[#0B1C2D] rounded-full shadow-md hover:scale-105 transition-transform">JavaScript</span>
+          <span class="px-4 py-2 bg-[#FFFBDE] text-[#0B1C2D] rounded-full shadow-md hover:scale-105 transition-transform">PHP</span>
+          <span class="px-4 py-2 bg-[#FFFBDE] text-[#0B1C2D] rounded-full shadow-md hover:scale-105 transition-transform">Tailwind</span>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="reveal text-2xl font-semibold text-[#0B1C2D] mb-8 text-center">Soft Skills</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-start">
+          
+          <div class="skill-card flex items-start gap-4 bg-[#FFFBDE]/90 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow">
+            <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-[#4682A9] text-[#FFFBDE] rounded-full">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
+              </svg>
+            </div>
+            <div>
+              <h5 class="text-lg font-bold text-[#0B1C2D]">Teamwork & Collaboration</h5>
+              <p class="text-[#0B1C2D]/80 mt-1 text-sm">ทำงานร่วมกับทีมได้ดี รับฟังความคิดเห็น และช่วยแก้ปัญหาร่วมกัน</p>
+            </div>
+          </div>
+
+        <div class="skill-card flex items-start gap-4 bg-[#FFFBDE]/90 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow">
+          <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-[#4682A9] text-[#FFFBDE] rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6" />
+            </svg>
+          </div>
+          <div>
+            <h5 class="text-lg font-bold text-[#0B1C2D]">Problem Solving</h5>
+            <p class="text-[#0B1C2D]/80 mt-1 text-sm">วิเคราะห์ปัญหา ค้นหาสาเหตุ และแก้ไขบั๊กหรือข้อผิดพลาดได้อย่างเป็นระบบ</p>
+          </div>
+        </div>
+
+        <div class="skill-card flex items-start gap-4 bg-[#FFFBDE]/90 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow">
+          <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-[#4682A9] text-[#FFFBDE] rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3" />
+            </svg>
+          </div>
+          <div>
+            <h5 class="text-lg font-bold text-[#0B1C2D]">Fast Learner</h5>
+            <p class="text-[#0B1C2D]/80 mt-1 text-sm">พร้อมเรียนรู้เทคโนโลยีใหม่ ๆ และพัฒนาตัวเองอย่างต่อเนื่อง</p>
+          </div>
+        </div>
+
+        <div class="skill-card flex items-start gap-4 bg-[#FFFBDE]/90 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow">
+          <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-[#4682A9] text-[#FFFBDE] rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <div>
+            <h5 class="text-lg font-bold text-[#0B1C2D]">Attention to Detail</h5>
+            <p class="text-[#0B1C2D]/80 mt-1 text-sm">ใส่ใจรายละเอียดทั้งโค้ดและออกแบบ UI/UX ให้ถูกต้องและเรียบร้อย</p>
+          </div>
+        </div>
+
+        <div class="skill-card flex items-start gap-4 bg-[#FFFBDE]/90 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow">
+          <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-[#4682A9] text-[#FFFBDE] rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3" />
+            </svg>
+          </div>
+          <div>
+            <h5 class="text-lg font-bold text-[#0B1C2D]">Self-Learning</h5>
+            <p class="text-[#0B1C2D]/80 mt-1 text-sm">พร้อมเรียนรู้เครื่องมือใหม่ ๆ หรือ Framework ใหม่ ๆ เพื่อพัฒนาตัวเอง</p>
+          </div>
+        </div>
+
+        <div class="skill-card flex items-start gap-4 bg-[#FFFBDE]/90 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow">
+          <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-[#4682A9] text-[#FFFBDE] rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3" />
+            </svg>
+          </div>
+          <div>
+            <h5 class="text-lg font-bold text-[#0B1C2D]">Time Management</h5>
+            <p class="text-[#0B1C2D]/80 mt-1 text-sm">จัดการเวลาและลำดับความสำคัญของงานให้เสร็จตรงตามกำหนด</p>
+          </div>
+        </div> 
+      </div>
+      
+    </div>
+</section>
+
+
+<section id="projects" class="relative z-10 min-h-screen bg-[#749BC2] py-24 px-6">
+  <div class="max-w-6xl mx-auto">
+
+    <!-- กรอบแบบเดียวกับ SKILLS -->
+<div class="bg-gradient-to-br 
+            from-[#FFFBDE] 
+            via-[#EAF4FB] 
+            to-[#FFFBDE]
+            border border-white/60
+            rounded-3xl shadow-[0_30px_80px_-20px_rgba(70,130,169,0.45)]
+            p-12 md:p-16 backdrop-blur-xl">
+
+      <!-- Title -->
+      <h3 class="reveal text-5xl font-extrabold text-center text-[#4682A9] mb-20 tracking-widest drop-shadow-lg">
+        PROJECTS
+      </h3>
+
+      <!-- Project Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Project Card -->
+      <div class="reveal delay-1 bg-[#4682A9] rounded-2xl shadow-xl overflow-hidden
+                  hover:-translate-y-2 transition duration-300 border border-[#91C8E4]/30">
+
+        <!-- Image -->
+        <div class="h-48 overflow-hidden bg-[#FFFBDE]">
+          <img src="PJ1.png"
+               onerror="this.src='https://via.placeholder.com/400x250?text=Project+Image'"
+               class="w-full h-full object-cover hover:scale-110 transition duration-500">
+        </div>
+
+        <!-- Content -->
+        <div class="p-6">
+          <h4 class="font-semibold text-xl text-[#FFFBDE] mb-2">
+            Portfolio Website
+          </h4>
+
+          <p class="text-sm text-[#FFFBDE]/80 mb-4">
+            เว็บแนะนำตัวแบบ One-Page
+          </p>
+
+          <!-- Link -->
+          <a href="https://comsci-rmutp.com/661209/index.html"
+          target="_blank"
+          rel="noopener noreferrer"
+             class="inline-block text-sm font-semibold text-[#4682A9]
+                    bg-[#FFFBDE] px-4 py-2 rounded-full
+                    hover:bg-[#91C8E4] hover:text-[#0B1C2D] transition">
+            View Project →
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="reveal delay-1 bg-[#4682A9] rounded-2xl shadow-xl overflow-hidden
+                  hover:-translate-y-2 transition duration-300 border border-[#91C8E4]/30">
+
+        <div class="h-48 overflow-hidden bg-[#FFFBDE]">
+          <img src="PJ2.png"
+               onerror="this.src='https://via.placeholder.com/400x250?text=Project+Image'"
+               class="w-full h-full object-cover hover:scale-110 transition duration-500">
+        </div>
+
+        <div class="p-6">
+          <h4 class="font-semibold text-xl text-[#FFFBDE] mb-2">
+            KINBURGER Menu Website
+          </h4>
+
+          <p class="text-sm text-[#FFFBDE]/80 mb-4">
+            เว็บไซต์แสดงเมนูร้าน KINBURGER พัฒนาด้วย HTML, CSS, MySQL และ PHP สำหรับนำเสนอรายการอาหารบนเว็บ
+          </p>
+
+          <a href="https://www.comsci-rmutp.com/2568gp35/KINBURGER.php"
+          target="_blank"
+          rel="noopener noreferrer"
+             class="inline-block text-sm font-semibold text-[#4682A9]
+                    bg-[#FFFBDE] px-4 py-2 rounded-full
+                    hover:bg-[#91C8E4] hover:text-[#0B1C2D] transition">
+            View Project →
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="reveal delay-1 bg-[#4682A9] rounded-2xl shadow-xl overflow-hidden
+                  hover:-translate-y-2 transition duration-300 border border-[#91C8E4]/30">
+
+        <div class="h-48 overflow-hidden bg-[#FFFBDE]">
+          <img src="PJ3.png"
+               onerror="this.src='https://via.placeholder.com/400x250?text=Project+Image'"
+               class="w-full h-full object-cover hover:scale-110 transition duration-500">
+        </div>
+
+        <div class="p-6">
+          <h4 class="font-semibold text-xl text-[#FFFBDE] mb-2">
+            เว็บจัดการข้อมูลนักศึกษา
+          </h4>
+
+          <p class="text-sm text-[#FFFBDE]/80 mb-4">
+            เว็บแสดงรายชื่อนักศึกษา พร้อมฟังก์ชันเพิ่ม ดู และแก้ไขข้อมูล
+          </p>
+
+          <a href="https://comsci-rmutp.com/661209/Lab7menu.php"
+          target="_blank"
+          rel="noopener noreferrer"
+             class="inline-block text-sm font-semibold text-[#4682A9]
+                    bg-[#FFFBDE] px-4 py-2 rounded-full
+                    hover:bg-[#91C8E4] hover:text-[#0B1C2D] transition">
+            View Project →
+          </a>
+        </div>
+      </div>
+
+            <!-- Project 4 -->
+      <div class="reveal delay-1 bg-[#4682A9] rounded-2xl shadow-xl overflow-hidden
+                  hover:-translate-y-2 transition duration-300 border border-[#91C8E4]/30">
+
+        <div class="h-48 overflow-hidden bg-[#FFFBDE]">
+          <img src="PJ4.png"
+               onerror="this.src='https://via.placeholder.com/400x250?text=Project+Image'"
+               class="w-full h-full object-cover hover:scale-110 transition duration-500">
+        </div>
+
+        <div class="p-6">
+          <h4 class="font-semibold text-xl text-[#FFFBDE] mb-2">
+            User Registration Form System
+          </h4>
+
+          <p class="text-sm text-[#FFFBDE]/80 mb-4">
+            ระบบฟอร์มลงทะเบียนผู้ใช้ (มีการตรวจรหัสผ่านและข้อมูลพื้นฐาน)
+          </p>
+
+          <a href="https://comsci-rmutp.com/661209/form1.html"
+          target="_blank"
+          rel="noopener noreferrer"
+             class="inline-block text-sm font-semibold text-[#4682A9]
+                    bg-[#FFFBDE] px-4 py-2 rounded-full
+                    hover:bg-[#91C8E4] hover:text-[#0B1C2D] transition">
+            View Project →
+          </a>
+        </div>
+      </div>
+
+                  <!-- Project 5 -->
+      <div class="reveal delay-1 bg-[#4682A9] rounded-2xl shadow-xl overflow-hidden
+                  hover:-translate-y-2 transition duration-300 border border-[#91C8E4]/30">
+
+        <div class="h-48 overflow-hidden bg-[#FFFBDE]">
+          <img src="PJ6.png"
+               onerror="this.src='https://via.placeholder.com/400x250?text=Project+Image'"
+               class="w-full h-full object-cover hover:scale-110 transition duration-500">
+        </div>
+
+        <div class="p-6">
+          <h4 class="font-semibold text-xl text-[#FFFBDE] mb-2">
+            เว็บเพจฝึกทำ Workshop 3
+          </h4>
+
+          <p class="text-sm text-[#FFFBDE]/80 mb-4">
+            เป็นเว็บที่ฝึกใช้ HTML และ CSS เพื่อสร้างหน้าเว็บ โดยดูผลการทำงานด้วย Console (F12) ที่เบราเซอร์
+          </p>
+
+          <a href="https://comsci-rmutp.com/661209/W3/workshop3.html"
+          target="_blank"
+          rel="noopener noreferrer"
+             class="inline-block text-sm font-semibold text-[#4682A9]
+                    bg-[#FFFBDE] px-4 py-2 rounded-full
+                    hover:bg-[#91C8E4] hover:text-[#0B1C2D] transition">
+            View Project →
+          </a>
+        </div>
+      </div>
+
+
+            <!-- Project 6 -->
+      <div class="reveal delay-1 bg-[#4682A9] rounded-2xl shadow-xl overflow-hidden
+                  hover:-translate-y-2 transition duration-300 border border-[#91C8E4]/30">
+
+        <div class="h-48 overflow-hidden bg-[#FFFBDE]">
+          <img src="PJ5.png"
+               onerror="this.src='https://via.placeholder.com/400x250?text=Project+Image'"
+               class="w-full h-full object-cover hover:scale-110 transition duration-500">
+        </div>
+
+        <div class="p-6">
+          <h4 class="font-semibold text-xl text-[#FFFBDE] mb-2">
+            Portfolio ที่สร้างด้วย Tailwind CSS
+          </h4>
+
+          <p class="text-sm text-[#FFFBDE]/80 mb-4">
+            เว็บไซต์ Portfolio ส่วนตัวที่แสดงข้อมูลเกี่ยวกับตัวเอง ประสบการณ์ และผลงานต่าง ๆ ออกแบบด้วย Tailwind CSS และ HTML
+          </p>
+
+          <a href="https://comsci-rmutp.com/661209/tailwind/AppPortfolio.html"
+          target="_blank"
+          rel="noopener noreferrer"
+             class="inline-block text-sm font-semibold text-[#4682A9]
+                    bg-[#FFFBDE] px-4 py-2 rounded-full
+                    hover:bg-[#91C8E4] hover:text-[#0B1C2D] transition">
+            View Project →
+          </a>
+        </div>
+      </div>
+
+                  <!-- Project 7 -->
+      <div class="reveal delay-1 bg-[#4682A9] rounded-2xl shadow-xl overflow-hidden
+                  hover:-translate-y-2 transition duration-300 border border-[#91C8E4]/30">
+
+        <div class="h-48 overflow-hidden bg-[#FFFBDE]">
+          <img src="PJ7.png"
+               onerror="this.src='https://via.placeholder.com/400x250?text=Project+Image'"
+               class="w-full h-full object-cover hover:scale-110 transition duration-500">
+        </div>
+
+        <div class="p-6">
+          <h4 class="font-semibold text-xl text-[#FFFBDE] mb-2">
+            Mountain Camp UI
+          </h4>
+
+          <p class="text-sm text-[#FFFBDE]/80 mb-4">
+            ออกแบบ UX/UI แอปพลิเคชั่นจองที่พัก (Figma)
+          </p>
+
+          <a href="https://www.figma.com/proto/AvD1QG4Rxum8UmedrpkwC4/%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD-Mockup?node-id=3-3&starting-point-node-id=3%3A3&t=RUacpVpFDnQYbvwG-1"
+          target="_blank"
+          rel="noopener noreferrer"
+             class="inline-block text-sm font-semibold text-[#4682A9]
+                    bg-[#FFFBDE] px-4 py-2 rounded-full
+                    hover:bg-[#91C8E4] hover:text-[#0B1C2D] transition">
+            View Project →
+          </a>
+        </div>
+      </div>
+
+
+                  <!-- Project 8 -->
+      <div class="reveal delay-1 bg-[#4682A9] rounded-2xl shadow-xl overflow-hidden
+                  hover:-translate-y-2 transition duration-300 border border-[#91C8E4]/30">
+
+        <div class="h-48 overflow-hidden bg-[#FFFBDE]">
+          <img src="PJ8.png"
+               onerror="this.src='https://via.placeholder.com/400x250?text=Project+Image'"
+               class="w-full h-full object-cover hover:scale-110 transition duration-500">
+        </div>
+
+        <div class="p-6">
+          <h4 class="font-semibold text-xl text-[#FFFBDE] mb-2">
+            Mountain Camp UI
+          </h4>
+
+          <p class="text-sm text-[#FFFBDE]/80 mb-4">
+            ออกแบบ UX/UI แอปพลิเคชั่นจองที่พัก (Figma)
+          </p>
+
+          <a href="https://www.figma.com/design/AvD1QG4Rxum8UmedrpkwC4/%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD-Mockup?node-id=0-1&t=fJrpiYsAm3qF6bw7-1"
+          target="_blank"
+          rel="noopener noreferrer"
+             class="inline-block text-sm font-semibold text-[#4682A9]
+                    bg-[#FFFBDE] px-4 py-2 rounded-full
+                    hover:bg-[#91C8E4] hover:text-[#0B1C2D] transition">
+            View Project →
+          </a>
+        </div>
+      </div>
+
+                        <!-- Project 9 -->
+      <div class="reveal delay-1 bg-[#4682A9] rounded-2xl shadow-xl overflow-hidden
+                  hover:-translate-y-2 transition duration-300 border border-[#91C8E4]/30">
+
+        <div class="h-48 overflow-hidden bg-[#FFFBDE]">
+          <img src="PJ9.png"
+               onerror="this.src='https://via.placeholder.com/400x250?text=Project+Image'"
+               class="w-full h-full object-cover hover:scale-110 transition duration-500">
+        </div>
+
+        <div class="p-6">
+          <h4 class="font-semibold text-xl text-[#FFFBDE] mb-2">
+            ออกแบบหน้า Portfolio ด้วย Figma
+          </h4>
+
+          <p class="text-sm text-[#FFFBDE]/80 mb-4">
+            เป็นการออกแบบหน้า Portfolio ด้วย Figma โดยทำมาเพื่อรองรับการใช้งานในโทรศัพท์และ ipad
+          </p>
+
+          <a href="https://www.figma.com/design/SfqXzaHQVtq6qMwGmir2sb/Untitled?node-id=0-1&t=Hpc6p94YxWDtXiXs-1"
+          target="_blank"
+          rel="noopener noreferrer"
+             class="inline-block text-sm font-semibold text-[#4682A9]
+                    bg-[#FFFBDE] px-4 py-2 rounded-full
+                    hover:bg-[#91C8E4] hover:text-[#0B1C2D] transition">
+            View Project →
+          </a>
+        </div>
+      </div>
+
+    
+    </div>
+  </div>
+</section>
+
+
+<section id="gpa" class="relative z-10 min-h-screen bg-gradient-to-b from-[#749BC2] to-[#4682A9] py-16 md:py-24">
+  <div class="max-w-6xl mx-auto px-4 md:px-6">
+        <div class="bg-gradient-to-br
+                from-[#FFFBDE]
+                via-[#EAF4FB]
+                to-[#FFFBDE]
+                border border-white/60
+                rounded-3xl
+                shadow-[0_30px_80px_-20px_rgba(70,130,169,0.45)]
+                p-8 md:p-16
+                backdrop-blur-xl">
+
+      <h3 class="reveal text-4xl md:text-5xl font-extrabold text-center text-[#0C2C55]
+                 mb-16 tracking-widest drop-shadow-lg">
+        GPA 
+      </h3>
+
+    <div class="reveal bg-[#F8FAFC] backdrop-blur-xl border border-[#91C8E4]/30 rounded-2xl shadow-2xl p-6 md:p-8 mb-8 md:mb-10 max-w-3xl mx-auto text-center">
+      <p class="text-xs md:text-sm uppercase tracking-widest text-[#0C2C55]/70">Cumulative GPA</p>
+      <p class="text-5xl md:text-6xl font-bold text-[#0C2C55] my-4" id="overallGPA">3.72</p>
+      <p class="text-[#0C2C55] text-sm md:text-base">GPA เฉลี่ยรวม</p>
+    </div>
+
+    <div class="reveal bg-[#D9EAFD]/80 backdrop-blur-xl border border-[#91C8E4]/20 rounded-2xl p-6 md:p-8 shadow-xl mb-8 md:mb-10 max-w-3xl mx-auto">
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <select id="yearSelect" class="w-full sm:w-auto bg-[#0f2a44] text-[#FFFBDE] border border-[#91C8E4]/50 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FFFBDE] text-base">
+          <option value="">เลือกชั้นปี</option>
+          <option value="y1">ปี 1</option>
+          <option value="y2">ปี 2</option>
+          <option value="y3">ปี 3</option>
+          <option value="y4">ปี 4</option>
+        </select>
+        <select id="termSelect" class="w-full sm:w-auto bg-[#0f2a44] text-[#FFFBDE] border border-[#91C8E4]/50 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FFFBDE] text-base">
+          <option value="t1">เทอม 1</option>
+          <option value="t2">เทอม 2</option>
+        </select>
+      </div>
+      <div class="text-center mt-8">
+        <p class="text-xs md:text-sm uppercase tracking-widest text-[#0C2C55]/70">Grade Point Average</p>
+        <p class="text-5xl md:text-6xl font-bold text-[#296374] my-2" id="gpaValue">0.00</p>
+        <p id="gpaDesc" class="text-[#0C2C55] text-sm">กรุณาเลือกชั้นปี</p>
+      </div>
+    </div>
+
+    <div class="reveal bg-[#BCCCDC]/60 backdrop-blur-xl border border-[#91C8E4]/10 rounded-2xl shadow-xl p-4 md:p-6 max-w-3xl mx-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h4 class="text-lg font-semibold tracking-wide text-[#0C2C55]">รายวิชา</h4>
+        <span class="text-sm text-[#0C2C55]">Grade</span>
+      </div>
+      <div id="subjectTable" class="space-y-3 text-sm">
+        <div class="text-center text-[#0C2C55]/40 py-10">ยังไม่มีข้อมูล</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact"
+  class="relative min-h-screen flex items-center justify-center
+         bg-gradient-to-br from-[#0B1C2D] via-[#4682A9] to-[#91C8E4]
+         px-6 overflow-hidden">
+
+  <!-- Background Glow -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px]
+              bg-[#FFFBDE]/10 rounded-full blur-[120px]"></div>
+
+  <!-- Main Card -->
+<div class="relative w-full max-w-4xl min-h-[720px]
+            bg-white/80 backdrop-blur-2xl
+            rounded-[2.5rem]
+            shadow-[0_60px_140px_-30px_rgba(0,0,0,0.45)]
+            border border-white/40
+            px-16 py-14
+            contact-reveal">
+
+    <!-- Header -->
+    <div class="text-center mb-12">
+
+      <h3 class="text-4xl font-extrabold text-[#0C2C55]">
+        Contact Information
+      </h3>
+
+      <p class="mt-3 text-[#0B1C2D]/70 text-sm">
+        Open for internship opportunities and collaboration
+      </p>
+    </div>
+
+    <!-- Contact List -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Email -->
+<a href="mailto:naya-p@rmutp.ac.th"
+   class="contact-item flex flex-col items-center justify-center
+          min-h-[180px]
+          bg-white rounded-2xl px-6 py-8
+          border border-[#4682A9]/20 shadow-md
+          hover:shadow-xl transition text-center">
+  <img src="Email1.png" class="w-12 h-12 mb-4">
+  <p class="font-semibold text-[#0B1C2D]">naya-p@rmutp.ac.th</p>
+</a>
+
+      <!-- Phone -->
+<div class="contact-item flex flex-col items-center justify-center
+            min-h-[180px]
+            bg-white rounded-2xl px-6 py-8
+            border border-[#4682A9]/20 text-center">
+  <img src="Tel.png" class="w-12 h-12 mb-4">
+  <p class="font-semibold text-[#0B1C2D]">061-664-2070</p>
+</div>
+
+      <!-- Facebook -->
+<a href="https://www.facebook.com/naya.puthasri" target="_blank"
+   class="contact-item flex flex-col items-center justify-center
+          min-h-[180px]
+          bg-white rounded-2xl px-6 py-8
+          border border-[#4682A9]/20 shadow-md
+          hover:shadow-xl transition text-center">
+  <img src="Facebook.png" class="w-12 h-12 mb-4">
+  <p class="font-semibold text-[#0B1C2D]">Naya Puthasri</p>
+</a>
+
+      <!-- Instagram -->
+<a href="https://www.instagram.com/ja_omxi/" target="_blank"
+   class="contact-item flex flex-col items-center justify-center
+          min-h-[180px]
+          bg-white rounded-2xl px-6 py-8
+          border border-[#4682A9]/20 shadow-md
+          hover:shadow-xl transition text-center">
+  <img src="Instagram1.png" class="w-12 h-12 mb-4">
+  <p class="font-semibold text-[#0B1C2D]">@ja_omxi</p>
+</a>
+<!-- LINE -->
+<div class="contact-item flex flex-col items-center justify-center
+            min-h-[180px]
+            bg-white rounded-2xl px-6 py-8
+            border border-[#4682A9]/20 text-center">
+  <img src="LINE.png" class="w-12 h-12 mb-4">
+  <p class="font-semibold text-[#0B1C2D]">@nayamai2548</p>
+</div>
+
+<!-- Location -->
+<div class="contact-item flex flex-col items-center justify-center
+            min-h-[180px]
+            bg-white rounded-2xl px-6 py-8
+            border border-[#4682A9]/20 text-center">
+  <img src="location.png" class="w-12 h-12 mb-4">
+  <p class="font-semibold text-[#0B1C2D]">Bangkok, Thailand</p>
+</div>
+
+    </div>
+
+<!-- To the top (Bottom Center) -->
+<div class="absolute bottom-8 left-1/2 -translate-x-1/2">
+  <a href="#home"
+     class="flex items-center gap-2
+            bg-white/80 backdrop-blur
+            px-6 py-3
+            rounded-full
+            border border-[#4682A9]/30
+            shadow-lg
+            text-sm font-semibold text-[#4682A9]
+            hover:bg-[#4682A9]
+            hover:text-white
+            transition-all duration-300">
+    
+    <!-- Arrow Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg"
+         class="w-4 h-4"
+         fill="none"
+         viewBox="0 0 24 24"
+         stroke="currentColor">
+      <path stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M5 10l7-7m0 0l7 7m-7-7v18" />
+    </svg>
+
+    To the top
+  </a>
+</div>
+</section>
+
+
+
+
+<script>
+// --- Mobile Menu Logic ---
+const btn = document.getElementById('mobile-menu-btn');
+const menu = document.getElementById('mobile-menu');
+const mobileLinks = document.querySelectorAll('.mobile-link');
+
+btn.addEventListener('click', () => {
+  menu.classList.toggle('hidden');
+});
+
+mobileLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    menu.classList.add('hidden');
+  });
+});
+
+// --- GPA Logic ---
+const educationData = {
+  "y1-t1": {
+    gpa: "3.52",
+    description: "เริ่มต้นการศึกษาด้วยพื้นฐานที่แข็งแกร่งด้านวิทยาการคอมพิวเตอร์และการเขียนโปรแกรม",
+    subjects: [
+      { name: "ภาษาไทยเพื่อการสื่อสาร",     grade: "B+" },
+      { name: "ภาษาอังกฤษเพื่อการเรียนรู้",    grade: "C" },
+      { name: "การพัฒนาบุคลิกภาพ",        grade: "A" },
+      { name: "ลีลาศ",                   grade: "A" },
+      { name: "การเขียนโปรแกรมคอมพิวเตอร์", grade: "A" },
+      { name: "วิทยาการคอมพิวเตอร์เบื้องต้น", grade: "B+" },
+      { name: "ตรรกะดิจิทัล",              grade: "A" }
+    ]
+  },
+  "y1-t2": {
+    gpa: "3.80",
+    description: "เรียนรู้ด้านคณิตศาสตร์คอมพิวเตอร์ โครงสร้างข้อมูล และอัลกอริทึม",
+    subjects: [
+      { name: "ทักษะการสื่อสารภาษาอังกฤษ", grade: "B+" },
+      { name: "นันทนาการ",               grade: "A" },
+      { name: "วิทยาศาสตร์ในชีวิตประจำวัน",  grade: "A" },
+      { name: "โลกในศตวรรษที่ 21",        grade: "B+" },
+      { name: "การพัฒนาตนเพื่ออาชีพ",      grade: "A" },
+      { name: "คณิตศาสตร์ดิสครีต",         grade: "B+" },
+      { name: "ฟิสิกส์สำหรับนักวิทยาการคอมพิวเตอร์", grade: "A" },
+      { name: "ระบบปฏิบัติการ",            grade: "A" }
+    ]
+  },
+  "y2-t1": {
+    gpa: "3.85",
+    description: "พัฒนาทักษะด้าน Web Application, Database และการออกแบบ UX/UI",
+    subjects: [
+      { name: "ภาษาอังกฤษเพื่ออาชีพ",                 grade: "A" },
+      { name: "แคลคูลัสสำหรับนักวิทยาการคอมพิวเตอร์",   grade: "A" },
+      { name: "ระบบสารสนเทศ",                    grade: "A" },
+      { name: "ปฏิสัมพันธ์ระหว่างมนุษย์กับคอมพิวเตอร์ (HCI)", grade: "A" },
+      { name: "ระบบฐานข้อมูล",                    grade: "B" },
+      { name: "โครงสร้างข้อมูลและการวิเคราะห์ขั้นตอนวิธี", grade: "A" },
+      { name: "การพัฒนาซอฟต์แวร์เชิงอ็อบเจกต์",        grade: "A" }
+    ]
+  },
+  "y2-t2": {
+    gpa: "3.75",
+    description: "ประยุกต์ใช้ภาษา Java และ Python ในการแก้ปัญหาทางคอมพิวเตอร์",
+    subjects: [
+      { name: "การสนทนาภาษาอังกฤษ",              grade: "A" },   
+      { name: "สิ่งแวดล้อมและการจัดการทรัพยากร",      grade: "A" },
+      { name: "ระเบียบวิธีเชิงตัวเลข",                 grade: "A" },
+      { name: "การวิเคราะห์และการออกแบบ",           grade: "A" },
+      { name: "การพัฒนาซอฟต์แวร์ประยุกต์",            grade: "A" },
+      { name: "องค์ประกอบและสถาปัตยกรรมคอมพิวเตอร์", grade: "C+" }
+    ]
+  },
+  "y3-t1": {
+    gpa: "3.66",
+    description: "เน้นด้านการพัฒนาเว็บไซต์สมัยใหม่และการสื่อสารข้อมูล",
+    subjects: [
+      { name: "สัมมนาทางวิทยาการคอมพิวเตอร์",   grade: "A" },
+      { name: "ภาษาการเขียนโปรแกรม",          grade: "A" },
+      { name: "การสื่อสารข้อมูลและเครือข่าย",      grade: "B" },
+      { name: "การเขียนโปรแกรมประยุกต์บนเว็บ"   , grade: "A" },
+      { name: "ภาษาโปรแกรมทางเลือก",          grade: "A" },
+      { name: "หลักสถิติ",                    grade: "B" }
+    ]
+  },
+  "y3-t2": { gpa: "0.00", description: "กำลังศึกษา", subjects: [] },
+  "y4-t1": { gpa: "0.00", description: "ยังไม่มีข้อมูล", subjects: [] },
+  "y4-t2": { gpa: "0.00", description: "ยังไม่มีข้อมูล", subjects: [] }
+};
+
+const yearSelect = document.getElementById("yearSelect");
+const termSelect = document.getElementById("termSelect");
+const gpaValue = document.getElementById("gpaValue");
+const gpaDesc = document.getElementById("gpaDesc");
+const subjectTable = document.getElementById("subjectTable");
+
+function updateGPA() {
+  if (!yearSelect.value || !termSelect.value) {
+    gpaValue.textContent = "0.00";
+    gpaDesc.textContent = "กรุณาเลือกชั้นปี";
+    subjectTable.innerHTML = `<div class="text-center text-[#0C2C55]/40 py-10">ยังไม่มีข้อมูล</div>`;
+    return;
+  }
+
+  const key = `${yearSelect.value}-${termSelect.value}`;
+  const data = educationData[key];
+
+  gpaValue.textContent = data.gpa;
+  gpaDesc.textContent = data.description;
+
+  if (data.subjects.length === 0) {
+    subjectTable.innerHTML = `<div class="text-center text-[#0C2C55]/40 py-10">ยังไม่มีข้อมูล</div>`;
+    return;
+  }
+
+  subjectTable.innerHTML = data.subjects.map(s => `
+    <div class="flex justify-between items-center bg-[#F8FAFC]/30 hover:bg-[#FFFFFF]/50 transition rounded-xl px-4 md:px-5 py-4 border border-[#FFFBDE]/10">
+      <span class="text-[#0C2C55] text-sm md:text-base pr-2">${s.name}</span>
+      <span class="px-3 py-1 rounded-full text-xs md:text-sm font-semibold flex-shrink-0
+        ${s.grade.startsWith('A') ? 'bg-[#F8FAFC] text-[#4682A9]' : 
+          s.grade.startsWith('B') ? 'bg-[#D9EAFD] text-[#4682A9]' : 
+          'bg-[#749BC2] text-white'}">
+        ${s.grade}
+      </span>
+    </div>
+  `).join("");
+}
+
+termSelect.addEventListener("change", updateGPA);
+yearSelect.addEventListener("change", () => {
+  termSelect.value = "t1";
+  updateGPA();
+});
+</script>
+
+<script>
+  // === 1. General Reveal Animation (Sections) ===
+  const reveals = document.querySelectorAll('.reveal');
+  const generalObserver = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          generalObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+  reveals.forEach(el => generalObserver.observe(el));
+
+
+  // === 2. Special Skills Card Staggered Animation (Pop-up Effect) ===
+  const skillCards = document.querySelectorAll('.skill-card');
+  
+  const skillObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // เพิ่ม class เพื่อเริ่มอนิเมชัน
+          entry.target.classList.add('pop-up');
+          // เลิก observe เพื่อไม่ให้เด้งซ้ำ
+          skillObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 } // เริ่มเด้งเมื่อเห็นการ์ดนิดเดียว
+  );
+
+  // ใส่ Delay ให้แต่ละใบไม่เท่ากัน (Stagger) เพื่อให้มันเด้งไล่ระดับสวยๆ
+  skillCards.forEach((card, index) => {
+    // index 0 = 0ms, index 1 = 100ms, index 2 = 200ms...
+    card.style.transitionDelay = `${index * 100}ms`; 
+    skillObserver.observe(card);
+  });
+</script>
+
+<script>
+/* ===== Contact Section Animation ===== */
+const contactSection = document.querySelector('#contact');
+const contactCard = contactSection.querySelector('.contact-reveal');
+const contactItems = contactSection.querySelectorAll('.contact-item');
+
+const contactObserver = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+
+        // เด้งกล่องหลัก
+        contactCard.classList.add('show');
+
+        // เด้งการ์ดทีละใบ
+        contactItems.forEach((item, index) => {
+          item.style.opacity = '0';
+          item.style.transform = 'translateY(40px)';
+          item.style.transition = 'all 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
+          item.style.transitionDelay = `${index * 120}ms`;
+
+          requestAnimationFrame(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+          });
+        });
+
+        contactObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.25 }
+);
+
+contactObserver.observe(contactSection);
+</script>
+
+
+</body>
+</html>
